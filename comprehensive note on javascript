@@ -1,0 +1,288 @@
+// NAME: ADEOSUN TAIWO AKINLOLUWA
+// DEPARTMENT: MECHATRONICS ENGINEERING TECHNOLOGY
+// MATRIC NUMBER: FPA/MT/23/1-0013
+
+// JavaScript Functions: A Comprehensive Note
+// General Definition and Explanation
+// A JavaScript function is a block of code that performs a specific task and can be reused multiple times.
+// It can take inputs (parameters), process them with logic, and return an output.
+// Functions make code modular, reduce duplication, and support logical operations like AND (&&), OR (||), and NOT (!) for decision-making.
+// JavaScript provides various function types, each with unique features for different coding needs.
+
+// 1. Function Declaration
+// Explanation: A named function defined with the "function" keyword, hoisted to allow calls before its definition.
+// It’s ideal for reusable tasks with consistent logic.
+function isNonNegative(num) {
+  let result;
+  if (num >= 0 || num === 0) {
+    result = "Non-negative";
+  } else {
+    result = "Negative";
+  }
+  return result;
+}
+console.log(isNonNegative(5)); // Output: "Non-negative"
+console.log(isNonNegative(-1)); // Output: "Negative"
+
+// Note: This is a code example demonstrating a function declaration.
+
+
+// 2. Function Expression
+// Explanation: A function assigned to a variable, not hoisted, suitable for dynamic or conditional use.
+// It’s often used when functions need to be stored or passed.
+const isValidString = function(str) {
+  let isValid;
+  isValid = str.length >= 2 && str.length <= 8;
+  return isValid;
+};
+console.log(isValidString("test")); // Output: true
+console.log(isValidString("toolongword")); // Output: false
+
+// Note: This is a code example demonstrating a function expression.
+
+
+// 3. Arrow Function
+// Explanation: A concise ES6+ syntax using "=>", with implicit return for single expressions and lexical "this" binding.
+// It’s great for short functions or callbacks.
+const flipBool = (value) => {
+  let flipped;
+  flipped = !value;
+  return flipped;
+};
+console.log(flipBool(true)); // Output: false
+console.log(flipBool(false)); // Output: true
+
+// Note: This is a code example demonstrating an arrow function.
+
+
+// 4. Default Parameters
+// Explanation: Parameters with preset values, used when arguments are omitted.
+// It’s useful for setting default behaviors with logical validation.
+function getStatus(status = "online") {
+  let result;
+  if (status === "online" || status === "offline") {
+    result = status;
+  } else {
+    result = "unknown";
+  }
+  return result;
+}
+console.log(getStatus()); // Output: "online"
+console.log(getStatus("offline")); // Output: "offline"
+console.log(getStatus("busy")); // Output: "unknown"
+
+// Note: This is a code example demonstrating default parameters.
+
+
+// 5. Rest Parameters
+// Explanation: Uses "..." to collect multiple arguments into an array.
+// It’s ideal for handling variable inputs with logical checks for validation.
+function joinWords(...words) {
+  let result;
+  if (words.length > 0) {
+    result = words.join(" ");
+  } else {
+    result = "No words";
+  }
+  return result;
+}
+console.log(joinWords("hello", "world")); // Output: "hello world"
+console.log(joinWords()); // Output: "No words"
+
+// Note: This is a code example demonstrating rest parameters.
+
+
+// 6. Closure
+// Explanation: A function that retains access to its outer scope’s variables after the outer function finishes.
+// It’s useful for maintaining private state with logical limits.
+const createCounter = () => {
+  let count = 0;
+  return () => {
+    count = count + 1;
+    if (count <= 4) {
+      return count;
+    } else {
+      return "Max count";
+    }
+  };
+};
+const counter = createCounter();
+console.log(counter()); // Output: 1
+console.log(counter()); // Output: 2
+console.log(counter()); // Output: 3
+console.log(counter()); // Output: 4
+console.log(counter()); // Output: "Max count"
+
+// Note: This is a code example demonstrating a closure.
+
+
+// 7. Higher-Order Function
+// Explanation: A function that takes or returns another function.
+// It’s used for abstracting logic with callbacks and conditional checks.
+const evaluateNum = (num, callback) => {
+  let result;
+  result = callback(num);
+  return result;
+};
+const isPositive = (n) => {
+  let isPos;
+  isPos = n > 0;
+  return isPos;
+};
+console.log(evaluateNum(6, isPositive)); // Output: true
+console.log(evaluateNum(-2, isPositive)); // Output: false
+
+// Note: This is a code example demonstrating a higher-order function.
+
+
+// 8. Immediately Invoked Function Expression (IIFE)
+// Explanation: A function defined and executed immediately, often for one-time setup or isolation.
+// It typically includes logical checks for initialization.
+(function() {
+  const ready = true;
+  let result;
+  if (ready) {
+    result = "Initialized";
+  }
+  return result;
+})(); // Output: "Initialized"
+
+// Note: This is a code example demonstrating an IIFE.
+
+
+// 9. Recursive Function
+// Explanation: A function that calls itself with a base case to avoid infinite loops.
+// It’s useful for repetitive tasks with logical termination.
+function sumUp(n) {
+  let result;
+  if (n <= 0 || n === 0) {
+    result = 0;
+  } else {
+    result = n + sumUp(n - 1);
+  }
+  return result;
+}
+console.log(sumUp(4)); // Output: 10 (4 + 3 + 2 + 1)
+console.log(sumUp(0)); // Output: 0
+
+// Note: This is a code example demonstrating a recursive function.
+
+
+// 10. Anonymous Function
+// Explanation: A function without a name, often used as a callback in array methods or loops.
+// It typically includes logical operations for data processing.
+const values = [1, -3, 2, -5, 0];
+const nonNegatives = values.filter(function(val) {
+  let isNonNegative;
+  isNonNegative = val >= 0 || val === 0;
+  return isNonNegative;
+});
+console.log(nonNegatives); // Output: [1, 2, 0]
+
+// Note: This is a code example demonstrating an anonymous function.
+
+
+// 11. Named Function Expression
+// Explanation: A function expression with a name, accessible only within its scope.
+// It’s useful for recursion or debugging.
+const factorial = function fact(n) {
+  let result;
+  if (n === 0 || n === 1) {
+    result = 1;
+  } else {
+    result = n * fact(n - 1);
+  }
+  return result;
+};
+console.log(factorial(5)); // Output: 120 (5 * 4 * 3 * 2 * 1)
+console.log(factorial(1)); // Output: 1
+
+// Note: This is a code example demonstrating a named function expression.
+
+
+// 12. Function with Return Statements
+// Explanation: Uses "return" to output a value and stop execution.
+// Logical conditions determine the output based on input.
+function checkRange(num) {
+  let result;
+  if (num < 0 || num > 100) {
+    result = "Out of range";
+  } else if (num >= 50 && num <= 75) {
+    result = "Target range";
+  } else {
+    result = "In range";
+  }
+  return result;
+}
+console.log(checkRange(60)); // Output: "Target range"
+console.log(checkRange(80)); // Output: "In range"
+console.log(checkRange(101)); // Output: "Out of range"
+
+// Note: This is a code example demonstrating a function with return statements.
+
+
+// 13. Nested Functions
+// Explanation: A function defined inside another function, with access to the outer function’s variables.
+// It’s useful for organizing logic with conditions.
+function outerCheck(value) {
+  function innerCheck() {
+    let isValid;
+    isValid = value >= 5 && value <= 15;
+    return isValid;
+  }
+  let result;
+  if (innerCheck()) {
+    result = "Valid";
+  } else {
+    result = "Invalid";
+  }
+  return result;
+}
+console.log(outerCheck(10)); // Output: "Valid"
+console.log(outerCheck(20)); // Output: "Invalid"
+
+// Note: This is a code example demonstrating nested functions.
+
+
+// 14. Function with Try-Catch
+// Explanation: Handles errors using try-catch blocks, ensuring safe execution.
+// Logical checks provide fallback results.
+function safeMultiply(a, b) {
+  try {
+    let result;
+    if (b !== 0) {
+      result = a * b;
+    } else {
+      result = "Zero multiplier";
+    }
+    return result;
+  } catch (e) {
+    return "Error occurred";
+  }
+}
+console.log(safeMultiply(5, 3)); // Output: 15
+console.log(safeMultiply(5, 0)); // Output: "Zero multiplier"
+
+// Note: This is a code example demonstrating a function with try-catch.
+
+
+// 15. Generator Function
+// Explanation: Uses "function*" to yield values one at a time, pausing between yields.
+// Logical conditions control the sequence length.
+function* generateIds() {
+  let id = 0;
+  while (id < 3) {
+    id = id + 1;
+    if (id <= 2) {
+      yield id;
+    } else {
+      yield "End";
+    }
+  }
+}
+const ids = generateIds();
+console.log(ids.next().value); // Output: 1
+console.log(ids.next().value); // Output: 2
+console.log(ids.next().value); // Output: "End"
+
+// Note: This is a code example demonstrating a generator function.
